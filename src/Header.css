@@ -1,0 +1,29 @@
+.header {}
+
+.header-title {
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.planet-content {
+  display: flex;
+  justify-content: start;
+}
+
+.planet-image {
+  width: 200px;
+  height: 200px;
+  margin: 0px 50px 100px 0px;
+  border-radius: 15px;
+}
+
+.planet-title {
+color: seashell;
+font-size: 35px;
+}
+
+.planet-location {
+  color: seashell;
+  font-size: 25px
+}
