@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import './Header.css';
 import SwapiService from "./servise";
+import Spiner from "./spiner/spiner";
 
 export default class Header extends Component  {
 
@@ -11,15 +12,22 @@ export default class Header extends Component  {
     name: null,
     population: null,
     rotationPeriod: null,
-    diameter: null
+    diameter: null,
+    loading: true
   };
 
-  constructor() {
-    super();
+  // constructor() {
+  //   super();
+  //   this.updatePlanet();
+  //   setInterval(this.updatePlanet, 3000)
+  // }
+
+  componentDidMount() {
     this.updatePlanet();
+    setInterval(this.updatePlanet, 3000)
   }
 
-  updatePlanet() {
+  updatePlanet = () => {
     const id = Math.floor(Math.random()*20) + 2;
     this.swapiService
     .getPlanet(id)
@@ -29,14 +37,19 @@ export default class Header extends Component  {
         name: planet.name,
         population: planet.population,
         rotationPeriod: planet.rotation_period,
-        diameter: planet.diameter
+        diameter: planet.diameter,
+        loading: false
       })
     })
   }
 
   render () {
 
-    const { id, name, population, rotationPeriod, diameter } = this.state;
+    const { id, name, population, rotationPeriod, diameter, loading } = this.state;
+
+    if (loading) {
+      return <Spiner/>
+    }
     return (
       <div className="header">
         <div className="header-title">
